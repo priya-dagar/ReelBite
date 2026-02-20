@@ -1,7 +1,3 @@
-console.log("🔥 AUTH ROUTES FILE IS LOADED 🔥");
-
-
-
 const express = require('express');
 const authController = require('../controllers/auth.controller');
 

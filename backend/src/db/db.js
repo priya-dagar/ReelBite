@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
-
+console.log("MONGOOSE_URL:", process.env.MONGOOSE_URL);
 
 function connectDB() {
-    mongoose.connect('mongodb://localhost:27017/food-view' )
+    mongoose.connect(process.env.MONGOOSE_URL, )
         .then(() => {
             console.log('MongoDB Connected');
         })
