@@ -26,7 +26,7 @@ async function registerUser(req, res) {
 
     const token = jwt.sign({
         id: user._id,
-    }, "d525b949ffcb8c0dc07d35f0b1df7931bb49a250")
+    }, process.env.JWT_SECRET)
     res.cookie("token", token)
     
     res.status(201).json({
@@ -65,7 +65,7 @@ if (!isPasswordValid) {
 
 const token = jwt.sign({
     id: user._id,
-}, "d525b949ffcb8c0dc07d35f0b1df7931bb49a250")
+}, process.env.JWT_SECRET)
 res.cookie("token", token)
 
 res.status(200).json({
@@ -79,7 +79,15 @@ res.status(200).json({
 })
 }
 
+function logoutUser(req, res) {
+    res.clearCookie("token");
+    res.status(200).json({
+        message: 'User logged out successfully',
+    })
+}
+
 module.exports = {
     registerUser,
-    loginUser
+    loginUser,
+    logoutUser,
 }
